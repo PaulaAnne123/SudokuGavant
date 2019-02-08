@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaulaSudoku", "PaulaSudoku\PaulaSudoku.csproj", "{ED9B8CE7-E2C5-41DA-896D-08BD290E8359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaulaSudoku", "SudokuSolver\PaulaSudoku.csproj", "{372B3A0A-1579-4B83-B929-C2C0441170B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaulaSudokuInterfaces", "SudukoSolverLib\PaulaSudokuInterfaces.csproj", "{A335CFA2-D0C9-48D4-9DF7-9ECBD5E217DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED9B8CE7-E2C5-41DA-896D-08BD290E8359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED9B8CE7-E2C5-41DA-896D-08BD290E8359}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED9B8CE7-E2C5-41DA-896D-08BD290E8359}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED9B8CE7-E2C5-41DA-896D-08BD290E8359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{372B3A0A-1579-4B83-B929-C2C0441170B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{372B3A0A-1579-4B83-B929-C2C0441170B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{372B3A0A-1579-4B83-B929-C2C0441170B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{372B3A0A-1579-4B83-B929-C2C0441170B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A335CFA2-D0C9-48D4-9DF7-9ECBD5E217DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A335CFA2-D0C9-48D4-9DF7-9ECBD5E217DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A335CFA2-D0C9-48D4-9DF7-9ECBD5E217DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A335CFA2-D0C9-48D4-9DF7-9ECBD5E217DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E7C17F39-4DAA-4874-93A7-4EAF646750ED}
+		SolutionGuid = {65728C8D-AF95-46C7-A16F-A5837CE9D958}
 	EndGlobalSection
 EndGlobal
