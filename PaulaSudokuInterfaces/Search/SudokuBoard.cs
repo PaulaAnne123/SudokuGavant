@@ -28,10 +28,10 @@ namespace PaulaSudokuInterfaces.Search
                             //Check Column
                             var colummContainsResult = columnContains(grid, y, value);
 
-                            //Check Nondrant
-                            var nondrantResult = nondrantContains(grid, x, y, value);
+                            //Check Block
+                            var BlockResult = BlockContains(grid, x, y, value);
 
-                            if (rowContainsResult || colummContainsResult || nondrantResult)
+                            if (rowContainsResult || colummContainsResult || BlockResult)
                             {
                                 //if value exists, it had already been used, so eliminate it
                                 grid[x][y].Remove(value);
@@ -54,19 +54,19 @@ namespace PaulaSudokuInterfaces.Search
         {
             foreach(var row in grid)
             {
-                findRowHiddenSigles(row);
+                findRowHiddenSingles(row);
             }
 
             for(var i = 0; i<grid.Count; i++)
             {
                 var pivotRow = pivotColumn(grid, i);
-                findRowHiddenSigles(pivotRow);
+                findRowHiddenSingles(pivotRow);
             }
 
             return true;
         }
 
-        public bool findRowHiddenSigles(List<HashSet<int>> row)
+        public bool findRowHiddenSingles(List<HashSet<int>> row)
         {
             var rowNeeds = GetRowNeeds(row);
 
@@ -92,7 +92,7 @@ namespace PaulaSudokuInterfaces.Search
             return true;
         }
 
-        public bool NonetSearch(List<List<HashSet<int>>> grid)
+        public bool BlockSearch(List<List<HashSet<int>>> grid)
         {
             var foundValue = false;
 
@@ -100,7 +100,7 @@ namespace PaulaSudokuInterfaces.Search
             {
                 for (var j = 0; j < 3; j++)
                 {
-                    var nondrantNeeds = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                    var BlockNeeds = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
                     //Get needed values depending on proximity to cell in question
                     for (var x = i * 3; x < i * 3 + 3; x++)
@@ -109,13 +109,13 @@ namespace PaulaSudokuInterfaces.Search
                         {
                             if (grid[x][y].Count == 1)
                             {
-                                nondrantNeeds.Remove(grid[x][y].Single());
+                                BlockNeeds.Remove(grid[x][y].Single());
                             }
                         }
                     }
 
                     //See where we could put needed values
-                    foreach (var need in nondrantNeeds)
+                    foreach (var need in BlockNeeds)
                     {
                         var potentialValueLocations = new List<Tuple<int, int>>();
 
@@ -123,7 +123,7 @@ namespace PaulaSudokuInterfaces.Search
                         {
                             for (var y = j * 3; y < j * 3 + 3; y++)
                             {
-                                if (grid[x][y].Count != 1 && !RowContains(grid[x], need) && !columnContains(grid, y, need) && !nondrantContains(grid, x, y, need) && grid[x][y].Contains(need))
+                                if (grid[x][y].Count != 1 && !RowContains(grid[x], need) && !columnContains(grid, y, need) && !BlockContains(grid, x, y, need) && grid[x][y].Contains(need))
                                 {
                                     potentialValueLocations.Add(new Tuple<int, int>(x, y));
                                 }
@@ -170,7 +170,7 @@ namespace PaulaSudokuInterfaces.Search
             }
         }
 
-        private bool nondrantContains(List<List<HashSet<int>>> grid, int x, int y, int value)
+        private bool BlockContains(List<List<HashSet<int>>> grid, int x, int y, int value)
         {
             var gridFlat = gridFlatten(grid, x, y);
             return RowContains(gridFlat, value);
