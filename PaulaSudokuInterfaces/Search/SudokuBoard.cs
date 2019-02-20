@@ -23,7 +23,7 @@ namespace PaulaSudokuInterfaces.Search
                         for (var value = 1; value <= grid.Count; value++)
                         {
                             //Check Row
-                            var rowContainsResult = rowContains(grid[x], value);
+                            var rowContainsResult = RowContains(grid[x], value);
 
                             //Check Column
                             var colummContainsResult = columnContains(grid, y, value);
@@ -50,7 +50,7 @@ namespace PaulaSudokuInterfaces.Search
             return foundValue;
         }
 
-        public bool singlesSearch(List<List<HashSet<int>>> grid)
+        public bool SinglesSearch(List<List<HashSet<int>>> grid)
         {
             foreach(var row in grid)
             {
@@ -92,7 +92,7 @@ namespace PaulaSudokuInterfaces.Search
             return true;
         }
 
-        public bool nonetSearch(List<List<HashSet<int>>> grid)
+        public bool NonetSearch(List<List<HashSet<int>>> grid)
         {
             var foundValue = false;
 
@@ -123,7 +123,7 @@ namespace PaulaSudokuInterfaces.Search
                         {
                             for (var y = j * 3; y < j * 3 + 3; y++)
                             {
-                                if (grid[x][y].Count != 1 && !rowContains(grid[x], need) && !columnContains(grid, y, need) && !nondrantContains(grid, x, y, need) && grid[x][y].Contains(need))
+                                if (grid[x][y].Count != 1 && !RowContains(grid[x], need) && !columnContains(grid, y, need) && !nondrantContains(grid, x, y, need) && grid[x][y].Contains(need))
                                 {
                                     potentialValueLocations.Add(new Tuple<int, int>(x, y));
                                 }
@@ -144,12 +144,12 @@ namespace PaulaSudokuInterfaces.Search
 
                             if (potentialValueLocations.All(p => p.Item1 == firstX))
                             {
-                                removePointingPairRow(grid[firstX], j, need);
+                                RemovePointingPairRow(grid[firstX], j, need);
                             }
                             else if (potentialValueLocations.All(p => p.Item2 == firstY))
                             {
                                 var pivotRow = pivotColumn(grid, firstY);
-                                removePointingPairRow(pivotRow, i, need);
+                                RemovePointingPairRow(pivotRow, i, need);
                             }
                         }
                     }
@@ -159,7 +159,7 @@ namespace PaulaSudokuInterfaces.Search
             return foundValue;
         }
 
-        public void removePointingPairRow(List<HashSet<int>> row, int indexOfBox, int need)
+        public void RemovePointingPairRow(List<HashSet<int>> row, int indexOfBox, int need)
         {
             for(var i = 0; i<row.Count; i++)
             {
@@ -173,28 +173,28 @@ namespace PaulaSudokuInterfaces.Search
         private bool nondrantContains(List<List<HashSet<int>>> grid, int x, int y, int value)
         {
             var gridFlat = gridFlatten(grid, x, y);
-            return rowContains(gridFlat, value);
+            return RowContains(gridFlat, value);
         }
 
         private bool columnContains(List<List<HashSet<int>>> grid, int y, int value)
         {
             var pivotedColumn = pivotColumn(grid, y);
-            return rowContains(pivotedColumn, value);
+            return RowContains(pivotedColumn, value);
         }
 
-        public bool searchTuples(List<List<HashSet<int>>> grid)
+        public bool SearchTuples(List<List<HashSet<int>>> grid)
         {
             foreach (var row in grid)
             {
-                removeRowNakedPairs(row, 2);
-                removeRowNakedPairs(row, 3);
+                RemoveRowNakedPairs(row, 2);
+                RemoveRowNakedPairs(row, 3);
             }
 
             for (var columnIndex = 0; columnIndex < grid.First().Count; columnIndex++)
             {
                 var pivotedColumn = pivotColumn(grid, columnIndex);
-                removeRowNakedPairs(pivotedColumn, 2);
-                removeRowNakedPairs(pivotedColumn, 3);
+                RemoveRowNakedPairs(pivotedColumn, 2);
+                RemoveRowNakedPairs(pivotedColumn, 3);
             }
 
             for (var x = 0; x < 3; x++)
@@ -202,8 +202,8 @@ namespace PaulaSudokuInterfaces.Search
                 for(var y = 0; y < 3; y++)
                 {
                     var gridFlat = gridFlatten(grid, x, y);
-                    removeRowNakedPairs(gridFlat, 2);
-                    removeRowNakedPairs(gridFlat, 3);
+                    RemoveRowNakedPairs(gridFlat, 2);
+                    RemoveRowNakedPairs(gridFlat, 3);
                 }
             }
 
@@ -242,7 +242,7 @@ namespace PaulaSudokuInterfaces.Search
             return pivotedColumn;
         }
 
-        public void removeRowNakedPairs(List<HashSet<int>> row, int n)
+        public void RemoveRowNakedPairs(List<HashSet<int>> row, int n)
         {
             foreach (var checkCol in row)
             {
@@ -274,7 +274,7 @@ namespace PaulaSudokuInterfaces.Search
             return result;
         }
 
-        public bool rowContains(List<HashSet<int>> row, int value)
+        public bool RowContains(List<HashSet<int>> row, int value)
         {
             //review the existing row occupants and see where the new candidate fits
             foreach (var box in row)

@@ -39,9 +39,9 @@ namespace PaulaSudokuInterfaces
                 numOfOptions = numberOfOptions(grid);
 
                 searchGrid.gridSearch(grid);
-                searchGrid.singlesSearch(grid);
-                searchGrid.nonetSearch(grid);
-                searchGrid.searchTuples(grid);
+                searchGrid.SinglesSearch(grid);
+                searchGrid.NonetSearch(grid);
+                searchGrid.SearchTuples(grid);
 
                 Done = isSolved(grid) || numOfOptions == numberOfOptions(grid);
             }
