@@ -10,7 +10,7 @@ namespace PaulaSudokuInterfaces.Search.Interfaces
     {
         bool gridSearch(List<List<HashSet<int>>> grid);
         bool SinglesSearch(List<List<HashSet<int>>> grid);
-        bool NonetSearch(List<List<HashSet<int>>> grid);
+        bool BlockSearch(List<List<HashSet<int>>> grid);
         bool SearchTuples(List<List<HashSet<int>>> grid);
 
         void RemoveRowNakedPairs(List<HashSet<int>> row, int n);

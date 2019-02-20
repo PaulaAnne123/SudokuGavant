@@ -19,6 +19,7 @@ namespace PaulaSudokuInterfaces
         }
 
         //Read the sudoku puzzle into an original grid for data manipulation
+        //Returns a list of solved puzzles
         public List<List<HashSet<int>>> SolvePuzzle(string fileName)
         {
             var grid = readFileIntoGrid(fileName);
@@ -31,6 +32,7 @@ namespace PaulaSudokuInterfaces
         {
             var numOfOptions = numberOfOptions(grid);
 
+            //Puzzle is not complete until total number of options exhausted
             var Done = false;
 
             while (!Done)
@@ -38,9 +40,10 @@ namespace PaulaSudokuInterfaces
                 //running total of number of options on sudoku board
                 numOfOptions = numberOfOptions(grid);
 
+                //use these techniques to slim down the choices available until all have been used utilizing sudoku techniquess
                 searchGrid.gridSearch(grid);
                 searchGrid.SinglesSearch(grid);
-                searchGrid.NonetSearch(grid);
+                searchGrid.BlockSearch(grid);
                 searchGrid.SearchTuples(grid);
 
                 Done = isSolved(grid) || numOfOptions == numberOfOptions(grid);

@@ -172,6 +172,7 @@ namespace PaulaSudokuInterfaces.Search
 
         private bool BlockContains(List<List<HashSet<int>>> grid, int x, int y, int value)
         {
+            //Initialize and check the first block for the value in question
             var gridFlat = gridFlatten(grid, x, y);
             return RowContains(gridFlat, value);
         }
